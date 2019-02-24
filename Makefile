@@ -6,6 +6,11 @@ deps:
 	@(go mod tidy && go mod vendor && go mod verify)
 
 
+.PHONY: goimports
+goimports:
+	@(goimports -ungroup -w .)
+
+
 .PHONY: install
 install:
 	@(go build -mod vendor -o retry . && chmod +x retry && echo "$$(pwd)/retry")

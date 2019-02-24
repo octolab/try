@@ -20,7 +20,7 @@
 	  //sys getsockopt(s int, level int, name int, val uintptr, vallen *_Socklen) (err error) = libsocket.getsockopt
 */
 
-package unix
+package main
 
 import (
 	"bufio"

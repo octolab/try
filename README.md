@@ -143,7 +143,7 @@ $ brew install kamilsk/tap/retry
 ### Binary
 
 ```bash
-$ export REQ_VER=4.0.0  # all available versions are on https://github.com/kamilsk/retry/releases
+$ export REQ_VER=4.0.0  # all available versions are on https://github.com/kamilsk/retry.cli/releases
 $ export REQ_OS=Linux   # macOS and Windows are also available
 $ export REQ_ARCH=64bit # 32bit is also available
 $ curl -sL -o retry.tar.gz \

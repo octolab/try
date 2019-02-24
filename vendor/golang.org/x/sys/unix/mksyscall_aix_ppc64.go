@@ -59,7 +59,7 @@ func callasyscall(...) (r1 uintptr, e1 Errno) {
 }
 */
 
-package unix
+package main
 
 import (
 	"bufio"

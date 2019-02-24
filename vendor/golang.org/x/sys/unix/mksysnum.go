@@ -8,7 +8,7 @@
 // FreeBSD, OpenBSD or Darwin from master list
 // (for example, /usr/src/sys/kern/syscalls.master or
 // sys/syscall.h).
-package unix
+package main
 
 import (
 	"bufio"

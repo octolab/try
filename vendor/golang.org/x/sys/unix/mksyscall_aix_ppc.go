@@ -19,7 +19,7 @@ and read like func declarations if //sys is replaced by func, but:
 	* at the end, after "=" sign, like
 	  //sys getsockopt(s int, level int, name int, val uintptr, vallen *_Socklen) (err error) = libsocket.getsockopt
 */
-package unix
+package main
 
 import (
 	"bufio"

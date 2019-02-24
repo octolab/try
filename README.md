@@ -4,8 +4,6 @@
 
 [![Awesome][icon_awesome]][awesome]
 [![Patreon][icon_patreon]][support]
-[![GoDoc][icon_docs]][docs]
-[![Research][icon_research]][research]
 [![License][icon_license]][license]
 
 ## Concept
@@ -184,7 +182,7 @@ made with ❤️ by [OctoLab][octolab]
 [docs]:            https://godoc.org/github.com/kamilsk/retry
 [gitter]:          https://gitter.im/kamilsk/retry
 [license]:         LICENSE
-[promo]:           https://github.com/kamilsk/retry
+[promo]:           https://github.com/kamilsk/retry.cli
 [quality]:         https://scrutinizer-ci.com/g/kamilsk/retry/?branch=v4
 [research]:        https://github.com/kamilsk/go-research/tree/master/projects/retry
 [legacy]:          https://github.com/kamilsk/retry/tree/master

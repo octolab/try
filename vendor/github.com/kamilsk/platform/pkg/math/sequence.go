@@ -1,9 +1,6 @@
 package math
 
-import (
-	"math"
-	"sort"
-)
+import "sort"
 
 // Sequence returns an empty slice with the specified size.
 //
@@ -83,7 +80,7 @@ func (sequence reducer) Maximum() int {
 	if len(sequence) == 0 {
 		return 0
 	}
-	max := math.MinInt64
+	max := sequence[0]
 	for _, num := range sequence {
 		if num > max {
 			max = num
@@ -111,7 +108,7 @@ func (sequence reducer) Minimum() int {
 	if len(sequence) == 0 {
 		return 0
 	}
-	min := math.MaxInt64
+	min := sequence[0]
 	for _, num := range sequence {
 		if num < min {
 			min = num

@@ -8,8 +8,10 @@ github.com/fatih/color
 github.com/inconshreveable/mousetrap
 # github.com/kamilsk/breaker v1.0.0
 github.com/kamilsk/breaker
-# github.com/kamilsk/platform v0.8.2
+# github.com/kamilsk/platform v0.9.0
 github.com/kamilsk/platform/cmd/cobra
+github.com/kamilsk/platform/pkg/unsafe
+github.com/kamilsk/platform/pkg/safe
 github.com/kamilsk/platform/pkg/fn
 github.com/kamilsk/platform/pkg/math
 # github.com/kamilsk/retry/v4 v4.0.0

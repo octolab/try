@@ -25,7 +25,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kamilsk/platform/pkg/fn"
+	"github.com/kamilsk/platform/pkg/unsafe"
 	"github.com/kamilsk/retry/v4/backoff"
 	"github.com/kamilsk/retry/v4/jitter"
 	"github.com/kamilsk/retry/v4/strategy"
@@ -64,7 +64,7 @@ func init() {
 	}
 	usage = func(output io.Writer, md Metadata) func() {
 		return func() {
-			fn.DoSilent(fmt.Fprintf(output, ` + "`" + `
+			unsafe.DoSilent(fmt.Fprintf(output, ` + "`" + `
 Usage: %s [-timeout Timeout] [--debug] [--notify] [strategy flags] -- command
 
 The strategy flags

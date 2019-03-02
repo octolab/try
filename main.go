@@ -82,7 +82,7 @@ func (app legacy) Run() {
 				// - https://github.com/jolicode/JoliNotif
 				unsafe.DoSilent(color.New(color.FgYellow).Fprintln(stderr, "notify component is not ready yet"))
 			}
-			_ = report.Execute(app.Stdout, struct {
+			unsafe.Ignore(report.Execute(app.Stdout, struct {
 				Name       string
 				Error      string
 				Start, End string
@@ -97,7 +97,7 @@ func (app legacy) Run() {
 				Elapsed: finish.Sub(start),
 				Stdout:  stdout.String(),
 				Stderr:  stderr.String(),
-			})
+			}))
 			spin.Stop()
 			shutdown(code)
 		}
@@ -108,7 +108,7 @@ func (app legacy) Run() {
 			spin.Start()
 			start = time.Now()
 		} else {
-			_ = spin.Color("red")
+			unsafe.Ignore(spin.Color("red"))
 			unsafe.DoSilent(color.New(color.FgYellow).Fprintf(stderr, "#%d attempt at %s... \n", attempt+1,
 				time.Since(start)))
 		}

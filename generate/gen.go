@@ -6,6 +6,7 @@ import (
 	"text/template"
 
 	"github.com/kamilsk/platform/pkg/safe"
+	"github.com/kamilsk/platform/pkg/unsafe"
 )
 
 //go:generate go run gen.go -output ../parser_gen.go
@@ -309,5 +310,5 @@ func main() {
 		panic(err)
 	}
 	defer safe.Close(f)
-	_ = t.Execute(f, nil)
+	unsafe.Ignore(t.Execute(f, nil))
 }

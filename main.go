@@ -14,6 +14,7 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/fatih/color"
 	"github.com/kamilsk/breaker"
+	"github.com/kamilsk/platform/pkg/fn"
 	"github.com/kamilsk/retry/v4"
 	"github.com/pkg/errors"
 )
@@ -58,7 +59,7 @@ func (app legacy) Run() {
 	)
 	if err != nil {
 		if err != flag.ErrHelp {
-			_, _ = color.New(color.FgRed).Fprintf(app.Stderr, "an error occurred: %v\n", err)
+			fn.DoSilent(color.New(color.FgRed).Fprintf(app.Stderr, "an error occurred: %v\n", err))
 			app.Shutdown(failure)
 			return
 		}
@@ -79,7 +80,7 @@ func (app legacy) Run() {
 				// TODO try to find or implement by myself
 				// - https://github.com/variadico/noti
 				// - https://github.com/jolicode/JoliNotif
-				_, _ = color.New(color.FgYellow).Fprintln(stderr, "notify component is not ready yet")
+				fn.DoSilent(color.New(color.FgYellow).Fprintln(stderr, "notify component is not ready yet"))
 			}
 			_ = report.Execute(app.Stdout, struct {
 				Name       string
@@ -108,8 +109,8 @@ func (app legacy) Run() {
 			start = time.Now()
 		} else {
 			_ = spin.Color("red")
-			_, _ = color.New(color.FgYellow).Fprintf(stderr, "#%d attempt at %s... \n", attempt+1,
-				time.Since(start))
+			fn.DoSilent(color.New(color.FgYellow).Fprintf(stderr, "#%d attempt at %s... \n", attempt+1,
+				time.Since(start)))
 		}
 		cmd := exec.Command(result.Args[0], result.Args[1:]...)
 		cmd.Stderr, cmd.Stdout = stderr, stdout

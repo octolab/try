@@ -4,10 +4,11 @@ import (
 	"flag"
 	"os"
 	"text/template"
+
+	"github.com/kamilsk/platform/pkg/safe"
 )
 
-//go:generate go run gen.go -output ../retry/parser_gen.go
-//go:generate goimports -ungroup -w ../retry/parser_gen.go
+//go:generate go run gen.go -output ../parser_gen.go
 
 const tpl = `
 {{ if .BuildTags }}//+build{{ range .BuildTags }} {{ . }}{{ end }}{{ end }}
@@ -24,23 +25,19 @@ import (
 	"strings"
 	"time"
 
+	"github.com/kamilsk/platform/pkg/fn"
 	"github.com/kamilsk/retry/v4/backoff"
 	"github.com/kamilsk/retry/v4/jitter"
 	"github.com/kamilsk/retry/v4/strategy"
 )
 
 func init() {
-	var (
-		fInfinite                                  bool
-		fLimit, fDelay, fWait, fBackoff, fTBackoff string
-	)
+	var fLimit, fDelay, fWait, fBackoff, fTBackoff string
 	compliance = map[string]struct {
 		cursor  interface{}
 		usage   string
 		handler func(*flag.Flag) (strategy.Strategy, error)
 	}{
-		"infinite": {cursor: &fInfinite,
-			handler: generatedInfiniteStrategy},
 		"limit": {cursor: &fLimit,
 			handler: generatedLimitStrategy},
 		"delay": {cursor: &fDelay,
@@ -67,13 +64,10 @@ func init() {
 	}
 	usage = func(output io.Writer, md Metadata) func() {
 		return func() {
-			fmt.Fprintf(output, ` + "`" + `
+			fn.DoSilent(fmt.Fprintf(output, ` + "`" + `
 Usage: %s [-timeout Timeout] [--debug] [--notify] [strategy flags] -- command
 
 The strategy flags
-    --infinite
-        Infinite creates a Strategy that will never stop repeating.
-
     -limit=X
         Limit creates a Strategy that limits the number of attempts that Retry will
         make.
@@ -161,16 +155,12 @@ Examples:
     %[1]s -timeout=500ms --notify --infinite -- git pull
 
 Version %s (commit: %s, build date: %s, go version: %s, compiler: %s, platform: %s)
-` + "`" + `, md.BinName, md.Version, md.Commit, md.BuildDate, md.GoVersion, md.Compiler, md.Platform)
+` + "`" + `, md.BinName, md.Version, md.Commit, md.BuildDate, md.GoVersion, md.Compiler, md.Platform))
 		}
 	}
 }
 
 // strategies
-
-func generatedInfiniteStrategy(_ *flag.Flag) (strategy.Strategy, error) {
-	return strategy.Infinite(), nil
-}
 
 func generatedLimitStrategy(f *flag.Flag) (strategy.Strategy, error) {
 	attemptLimit, err := strconv.ParseUint(f.Value.String(), 10, 0)
@@ -318,6 +308,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer func() { _ = f.Close() }()
+	defer safe.Close(f)
 	_ = t.Execute(f, nil)
 }

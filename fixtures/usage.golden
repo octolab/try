@@ -2,9 +2,6 @@
 Usage: test [-timeout Timeout] [--debug] [--notify] [strategy flags] -- command
 
 The strategy flags
-    --infinite
-        Infinite creates a Strategy that will never stop repeating.
-
     -limit=X
         Limit creates a Strategy that limits the number of attempts that Retry will
         make.

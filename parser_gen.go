@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/kamilsk/platform/pkg/fn"
 	"github.com/kamilsk/retry/v4/backoff"
 	"github.com/kamilsk/retry/v4/jitter"
 	"github.com/kamilsk/retry/v4/strategy"
@@ -48,13 +49,10 @@ func init() {
 	}
 	usage = func(output io.Writer, md Metadata) func() {
 		return func() {
-			_, _ = fmt.Fprintf(output, `
+			fn.DoSilent(fmt.Fprintf(output, `
 Usage: %s [-timeout Timeout] [--debug] [--notify] [strategy flags] -- command
 
 The strategy flags
-    --infinite
-        Infinite creates a Strategy that will never stop repeating.
-
     -limit=X
         Limit creates a Strategy that limits the number of attempts that Retry will
         make.
@@ -142,7 +140,7 @@ Examples:
     %[1]s -timeout=500ms --notify --infinite -- git pull
 
 Version %s (commit: %s, build date: %s, go version: %s, compiler: %s, platform: %s)
-`, md.BinName, md.Version, md.Commit, md.BuildDate, md.GoVersion, md.Compiler, md.Platform)
+`, md.BinName, md.Version, md.Commit, md.BuildDate, md.GoVersion, md.Compiler, md.Platform))
 		}
 	}
 }

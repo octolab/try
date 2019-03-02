@@ -25,6 +25,7 @@ brew:
     name:  homebrew-tap
     owner: kamilsk
   homepage: https://github.com/kamilsk/retry.cli
+  name: retry
 
 build:
   binary: retry

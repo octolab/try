@@ -35,7 +35,8 @@ type commander interface {
 }
 
 func New() *cobra.Command {
-	return &cobra.Command{Use: "retry", Short: "Functional mechanism to perform actions repetitively until successful"}
+	return &cobra.Command{Use: "retry",
+		Short: "CLI tool based on https://github.com/kamilsk/retry package to execute commands with retries."}
 }
 
 func draft() { tool(New(), os.Stderr, os.Exit) }

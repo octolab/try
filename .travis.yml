@@ -4,6 +4,7 @@ go:
 - master
 - 1.x
 - 1.11.x
+- 1.12.x
 
 sudo: false
 
@@ -16,7 +17,7 @@ script:
 
 after_success:
 - echo $TRAVIS_GO_VERSION ":" $TRAVIS_TAG
-- if [[ $TRAVIS_GO_VERSION == 1.11* ]] && [ -n "$TRAVIS_TAG" ]; then curl -sL https://git.io/goreleaser | bash; fi
+- if [[ $TRAVIS_GO_VERSION == 1.12* ]] && [ -n "$TRAVIS_TAG" ]; then curl -sL https://git.io/goreleaser | bash; fi
 
 notifications:
   slack: octolab:1eMS7IqOArBipiu31jYVd0cN

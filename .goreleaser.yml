@@ -7,8 +7,8 @@ archive:
     format: zip
   name_template: "{{.Binary}}_{{.Version}}_{{.Os}}-{{.Arch}}"
   replacements:
-    386:    32bit
-    amd64:  64bit
+    386:     32bit
+    amd64:   64bit
 
     darwin:  macOS
     linux:   Linux

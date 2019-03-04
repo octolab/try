@@ -14,7 +14,7 @@ github.com/kamilsk/platform/pkg/unsafe
 github.com/kamilsk/platform/pkg/safe
 github.com/kamilsk/platform/pkg/fn
 github.com/kamilsk/platform/pkg/math
-# github.com/kamilsk/retry/v4 v4.0.0
+# github.com/kamilsk/retry/v4 v4.0.1
 github.com/kamilsk/retry/v4
 github.com/kamilsk/retry/v4/backoff
 github.com/kamilsk/retry/v4/jitter
@@ -33,5 +33,5 @@ github.com/spf13/cobra
 github.com/spf13/pflag
 # github.com/stretchr/testify v1.3.0
 github.com/stretchr/testify/assert
-# golang.org/x/sys v0.0.0-20190303122642-d455e41777fc
+# golang.org/x/sys v0.0.0-20190303192550-c2f5717e611c
 golang.org/x/sys/unix

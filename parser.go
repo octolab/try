@@ -8,6 +8,7 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/kamilsk/retry/v4"
 	"github.com/kamilsk/retry/v4/backoff"
 	"github.com/kamilsk/retry/v4/jitter"
 	"github.com/kamilsk/retry/v4/strategy"
@@ -27,7 +28,7 @@ type Command struct {
 	Debug      bool
 	Notify     bool
 	Args       []string
-	Strategies []func(attempt uint, err error) bool
+	Strategies retry.How
 }
 
 var (

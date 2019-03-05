@@ -187,7 +187,7 @@ type Spinner struct {
 
 // New provides a pointer to an instance of Spinner with the supplied options
 func New(cs []string, d time.Duration, options ...Option) *Spinner {
-	s := &Spinner{
+	s:= &Spinner{
 		Delay:    d,
 		chars:    cs,
 		color:    color.New(color.FgWhite).SprintFunc(),
@@ -207,8 +207,8 @@ func New(cs []string, d time.Duration, options ...Option) *Spinner {
 type Option func(*Spinner)
 
 type Options struct {
-	Color    string
-	Suffix   string
+	Color string
+	Suffix string
 	FinalMSG string
 }
 

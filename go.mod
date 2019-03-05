@@ -11,5 +11,5 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/spf13/cobra v0.0.3
 	github.com/stretchr/testify v1.3.0
-	golang.org/x/sys v0.0.0-20190303192550-c2f5717e611c // indirect
+	golang.org/x/sys v0.0.0-20190305064518-30e92a19ae4a // indirect
 )

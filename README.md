@@ -2,19 +2,24 @@
 >
 > `retry` provides functionality to repeat terminal commands.
 
-[![Awesome][icon_awesome]][awesome]
-[![Patreon][icon_patreon]][support]
-[![License][icon_license]][license]
+[![Awesome][icon_awesome]][page_awesome]
 
-## Concept
+## 💡 Idea
 
 ```bash
 $ retry -limit=3 -backoff=lin:500ms -- curl example.com
 ```
 
-[![asciicast](https://asciinema.org/a/150367.png)](https://asciinema.org/a/150367)
+Full description of the idea is available
+[here](https://www.notion.so/octolab/retry-cab5722faae445d197e44fbe0225cc98?r=0b753cbf767346f5a6fd51194829a2f3).
 
-## Documentation
+## 🏆 Motivation
+
+...
+
+## 🤼‍♂️ How to
+
+[![asciicast](https://asciinema.org/a/150367.png)](https://asciinema.org/a/150367)
 
 ```
 Usage: retry [-timeout Timeout] [--debug] [--notify] [strategy flags] -- command
@@ -130,9 +135,9 @@ trying...
 error occurred: "context deadline exceeded"
 ```
 
-## Installation
+## 🧩 Installation
 
-### Brew
+### Homebrew
 
 ```bash
 $ brew install kamilsk/tap/retry
@@ -157,7 +162,7 @@ $ # or use mirror
 $ egg bitbucket.org/kamilsk/retry.cli -- make test install
 ```
 
-> [egg][]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
+> [egg][page_egg]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
 
 ### Bash and Zsh completions
 
@@ -170,49 +175,12 @@ $ retry completion zsh  > /path/to/zsh-completions/_retry.zsh
 
 ---
 
-[![Gitter][icon_gitter]][gitter]
-[![@kamilsk][icon_tw_author]][author]
-[![@octolab][icon_tw_sponsor]][sponsor]
-
-made with ❤️ by [OctoLab][octolab]
-
-[awesome]:         https://github.com/avelino/awesome-go#utilities
-[build]:           https://travis-ci.org/kamilsk/retry
-[cli]:             https://github.com/kamilsk/retry.cli
-[docs]:            https://godoc.org/github.com/kamilsk/retry
-[gitter]:          https://gitter.im/kamilsk/retry
-[license]:         LICENSE
-[promo]:           https://github.com/kamilsk/retry.cli
-[quality]:         https://scrutinizer-ci.com/g/kamilsk/retry/?branch=v4
-[research]:        https://github.com/kamilsk/go-research/tree/master/projects/retry
-[legacy]:          https://github.com/kamilsk/retry/tree/master
-[v3]:              https://github.com/kamilsk/retry/tree/v3
-[v4]:              https://github.com/kamilsk/retry/projects/4
-
-[breaker]:         https://github.com/kamilsk/breaker
-[dep]:             https://golang.github.io/dep/
-[egg]:             https://github.com/kamilsk/egg
-[glide]:           https://glide.sh/
-[gomod]:           https://github.com/golang/go/wiki/Modules
-[platform]:        https://github.com/kamilsk/platform
-
-[author]:          https://twitter.com/ikamilsk
-[octolab]:         https://www.octolab.org/
-[sponsor]:         https://twitter.com/octolab_inc
-[support]:         https://www.patreon.com/octolab
-
-[analytics]:       https://ga-beacon.appspot.com/UA-109817251-1/retry/v4?pixel
-[tweet]:           https://twitter.com/intent/tweet?text=Functional%20mechanism%20to%20perform%20actions%20repetitively%20until%20successful&url=https://github.com/kamilsk/retry&via=ikamilsk&hashtags=go,repeat,retry,backoff,jitter
+made with ❤️ for everyone
 
 [icon_awesome]:    https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg
-[icon_build]:      https://travis-ci.org/kamilsk/retry.svg?branch=v4
-[icon_coverage]:   https://scrutinizer-ci.com/g/kamilsk/retry/badges/coverage.png?b=v4
-[icon_docs]:       https://godoc.org/github.com/kamilsk/retry?status.svg
-[icon_gitter]:     https://badges.gitter.im/Join%20Chat.svg
-[icon_license]:    https://img.shields.io/badge/license-MIT-blue.svg
-[icon_patreon]:    https://img.shields.io/badge/patreon-donate-orange.svg
-[icon_quality]:    https://scrutinizer-ci.com/g/kamilsk/retry/badges/quality-score.png?b=v4
-[icon_research]:   https://img.shields.io/badge/research-in%20progress-yellow.svg
-[icon_tw_author]:  https://img.shields.io/badge/author-%40kamilsk-blue.svg
-[icon_tw_sponsor]: https://img.shields.io/badge/sponsor-%40octolab-blue.svg
-[icon_twitter]:    https://img.shields.io/twitter/url/http/shields.io.svg?style=social
+[icon_build]:      https://travis-ci.org/kamilsk/retry.cli.svg?branch=master
+
+[page_awesome]:    https://github.com/avelino/awesome-go#utilities
+[page_build]:      https://travis-ci.org/kamilsk/retry.cli
+[page_promo]:      https://github.com/kamilsk/retry.cli
+[page_egg]:        https://github.com/kamilsk/egg

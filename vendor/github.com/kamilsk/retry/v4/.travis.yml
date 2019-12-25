@@ -1,4 +1,16 @@
+sudo:     false
 language: go
+
+cache:
+  directories:
+  - $HOME/.cache/go-build
+  - $HOME/gopath/pkg/mod
+
+env:
+  global:
+  - CODECLIMATE=https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  - GO111MODULE=on
+  - GOFLAGS=-mod=vendor
 
 go:
 - master
@@ -9,21 +21,20 @@ go:
 - 1.10.x
 - 1.11.x
 - 1.12.x
+- 1.13.x
 
-sudo: false
-
-before_install:
-- export GO111MODULE=on
-- export GOFLAGS=-mod=vendor
+before_script:
+- if [[ $TRAVIS_GO_VERSION == 1.13* ]]; then curl -L $CODECLIMATE > ./cc-test-reporter; fi
+- if [[ $TRAVIS_GO_VERSION == 1.13* ]]; then chmod +x ./cc-test-reporter; fi
+- if [[ $TRAVIS_GO_VERSION == 1.13* ]]; then ./cc-test-reporter before-build; fi
 
 script:
-- make test
+- if [[ $TRAVIS_GO_VERSION == 1.13* ]]; then make test-with-coverage-profile; else make test; fi
+
+after_script:
+- if [[ $TRAVIS_GO_VERSION == 1.13* ]]; then export EXIT_CODE=$TRAVIS_TEST_RESULT; fi
+- if [[ $TRAVIS_GO_VERSION == 1.13* ]]; then export PREFIX=$(basename $(go list -m)); fi
+- if [[ $TRAVIS_GO_VERSION == 1.13* ]]; then ./cc-test-reporter after-build -t gocov -p $PREFIX; fi
 
 notifications:
   slack: octolab:1eMS7IqOArBipiu31jYVd0cN
-  webhooks:
-    urls:
-    - https://webhooks.gitter.im/e/63f69d732d88862909a2
-    on_success: change
-    on_failure: always
-    on_start:   never

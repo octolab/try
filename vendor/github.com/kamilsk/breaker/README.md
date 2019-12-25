@@ -1,38 +1,21 @@
 > # 🚧 breaker
 >
-> Flexible mechanism to make your code breakable.
+> Flexible mechanism to make execution flow interruptible.
 
-[![Patreon][icon_patreon]][support]
-[![GoDoc][icon_docs]][docs]
-[![License][icon_license]][license]
+[![Build][icon_build]][page_build]
+[![Quality][icon_quality]][page_quality]
+[![Documentation][icon_docs]][page_docs]
+[![Coverage][icon_coverage]][page_coverage]
+[![Awesome][icon_awesome]][page_awesome]
 
-A Breaker carries a cancellation signal to break an action execution.
+## 💡 Idea
 
-Example based on [github.com/kamilsk/retry][retry] package:
-
-```go
-if err := retry.Retry(breaker.BreakByTimeout(time.Minute), action); err != nil {
-	log.Fatal(err)
-}
-```
-
-Example based on [github.com/kamilsk/semaphore][semaphore] package:
-
-```go
-if err := semaphore.Acquire(breaker.BreakByTimeout(time.Minute), 5); err != nil {
-	log.Fatal(err)
-}
-```
-
-Complex example:
+The breaker carries a cancellation signal to interrupt an action execution.
 
 ```go
 interrupter := breaker.Multiplex(
-	func () breaker.Interface {
-		br, _ := breaker.WithContext(request.Context())
-		return br
-	}()
-	breaker.BreakByTimeout(time.Minute),
+	breaker.BreakByContext(context.WithTimeout(req.Context(), time.Minute)),
+	breaker.BreakByDeadline(NewYear),
 	breaker.BreakBySignal(os.Interrupt),
 )
 defer interrupter.Close()
@@ -40,35 +23,119 @@ defer interrupter.Close()
 <-interrupter.Done() // wait context cancellation, timeout or interrupt signal
 ```
 
-## Notice
+Full description of the idea is available [here][design].
 
-This package is based on the [platform][] - my toolset to build microservices such as [click][] or [forma][].
-It is stable, well-tested and production ready.
+## 🏆 Motivation
+
+I have to make [github.com/kamilsk/retry][retry] package:
+
+```go
+if err := retry.Retry(breaker.BreakByTimeout(time.Minute), action); err != nil {
+	log.Fatal(err)
+}
+```
+
+and [github.com/kamilsk/semaphore][semaphore] package:
+
+```go
+if err := semaphore.Acquire(breaker.BreakByTimeout(time.Minute), 5); err != nil {
+	log.Fatal(err)
+}
+```
+
+more consistent and reliable.
+
+## 🤼‍♂️ How to
+
+```go
+import (
+	"bytes"
+	"context"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"time"
+
+	"github.com/kamilsk/breaker"
+)
+
+var NewYear = time.Time{}.AddDate(time.Now().Year(), 0, 0)
+
+func Handle(rw http.ResponseWriter, req *http.Request) {
+	ctx, cancel := context.WithCancel(req.Context())
+	defer cancel()
+
+	deadline, _ := time.ParseDuration(req.Header.Get("X-Timeout"))
+	interrupter := breaker.Multiplex(
+		breaker.BreakByContext(context.WithTimeout(ctx, deadline)),
+		breaker.BreakByDeadline(NewYear),
+		breaker.BreakBySignal(os.Interrupt),
+	)
+	defer interrupter.Close()
+
+	buf, work := bytes.NewBuffer(nil), Work(ctx, struct{}{})
+	for {
+		select {
+		case b, ok := <-work:
+			if !ok {
+				rw.WriteHeader(http.StatusOK)
+				io.Copy(rw, buf)
+				return
+			}
+			buf.WriteByte(b)
+		case <-interrupter.Done():
+			rw.WriteHeader(http.StatusPartialContent)
+			rw.Header().Set("Content-Range", fmt.Sprintf("bytes=0-%d", buf.Len()))
+			io.Copy(rw, buf)
+			return
+		}
+	}
+}
+
+func Work(ctx context.Context, _ struct{}) <-chan byte {
+	outcome := make(chan byte, 1)
+
+	go func() { ... }()
+
+	return outcome
+}
+```
+
+## 🧩 Integration
+
+The library uses [SemVer](https://semver.org) for versioning, and it is not
+[BC](https://en.wikipedia.org/wiki/Backward_compatibility)-safe through major releases.
+You can use [go modules](https://github.com/golang/go/wiki/Modules) or
+[dep](https://golang.github.io/dep/) to manage its version.
+
+```bash
+$ go get -u github.com/kamilsk/breaker
+
+$ dep ensure -add github.com/kamilsk/breaker
+```
 
 ---
 
-[![@kamilsk][icon_tw_author]][author]
-[![@octolab][icon_tw_sponsor]][sponsor]
+made with ❤️ for everyone
 
-made with ❤️ by [OctoLab][octolab]
+[icon_awesome]:     https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg
+[icon_build]:       https://travis-ci.org/kamilsk/breaker.svg?branch=master
+[icon_coverage]:    https://api.codeclimate.com/v1/badges/1d703de640b4c6cfcd6f/test_coverage
+[icon_docs]:        https://godoc.org/github.com/kamilsk/breaker?status.svg
+[icon_quality]:     https://goreportcard.com/badge/github.com/kamilsk/breaker
 
-[docs]:            https://godoc.org/github.com/kamilsk/breaker
-[license]:         LICENSE
-[promo]:           https://github.com/kamilsk/breaker
+[page_awesome]:     https://github.com/avelino/awesome-go#goroutines
+[page_build]:       https://travis-ci.org/kamilsk/breaker
+[page_coverage]:    https://codeclimate.com/github/kamilsk/breaker/test_coverage
+[page_docs]:        https://godoc.org/github.com/kamilsk/breaker
+[page_quality]:     https://goreportcard.com/report/github.com/kamilsk/breaker
 
-[click]:           https://github.com/kamilsk/click
-[forma]:           https://github.com/kamilsk/form-api
-[platform]:        https://github.com/kamilsk/platform
-[retry]:           https://github.com/kamilsk/retry
-[semaphore]:       https://github.com/kamilsk/semaphore
+[design]:           https://www.notion.so/octolab/breaker-77116e98fda74c28bd64e42bd440bbf3?r=0b753cbf767346f5a6fd51194829a2f3
+[egg]:              https://github.com/kamilsk/egg
+[promo]:            https://github.com/kamilsk/breaker
+[retry]:            https://github.com/kamilsk/retry
+[semaphore]:        https://github.com/kamilsk/semaphore
 
-[author]:          https://twitter.com/ikamilsk
-[octolab]:         https://www.octolab.org/
-[sponsor]:         https://twitter.com/octolab_inc
-[support]:         https://www.patreon.com/octolab
-
-[icon_docs]:       https://godoc.org/github.com/kamilsk/breaker?status.svg
-[icon_license]:    https://img.shields.io/badge/license-MIT-blue.svg
-[icon_patreon]:    https://img.shields.io/badge/patreon-donate-orange.svg
-[icon_tw_author]:  https://img.shields.io/badge/author-%40kamilsk-blue.svg
-[icon_tw_sponsor]: https://img.shields.io/badge/sponsor-%40octolab-blue.svg
+[tmp.docs]:         https://nicedoc.io/kamilsk/breaker?theme=dark
+[tmp.history]:      https://github.githistory.xyz/kamilsk/breaker/blob/master/README.md

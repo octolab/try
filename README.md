@@ -1,6 +1,6 @@
 > # ♻️ retry
 >
-> `retry` provides functionality to repeat terminal commands.
+> Tool to execute terminal commands with retries.
 
 [![Awesome][icon_awesome]][page_awesome]
 

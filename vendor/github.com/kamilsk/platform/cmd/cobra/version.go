@@ -7,6 +7,7 @@ import (
 )
 
 // NewVersionCommand returns new version command.
+// Deprecated: use go.octolab.org/toolkit/cli/cobra.NewVersionCommand instead.
 func NewVersionCommand(commit, date, release string) *cobra.Command {
 	return &cobra.Command{
 		Use:   "version",

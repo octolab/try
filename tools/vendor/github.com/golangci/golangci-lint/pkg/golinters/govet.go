@@ -1,9 +1,9 @@
 package golinters
 
 import (
-	"github.com/golangci/golangci-lint/pkg/config"
-	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
-	"golang.org/x/tools/go/analysis" // analysis plug-ins
+	"golang.org/x/tools/go/analysis"
+
+	// analysis plug-ins
 	"golang.org/x/tools/go/analysis/passes/asmdecl"
 	"golang.org/x/tools/go/analysis/passes/assign"
 	"golang.org/x/tools/go/analysis/passes/atomic"
@@ -36,6 +36,9 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unreachable"
 	"golang.org/x/tools/go/analysis/passes/unsafeptr"
 	"golang.org/x/tools/go/analysis/passes/unusedresult"
+
+	"github.com/golangci/golangci-lint/pkg/config"
+	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
 )
 
 func getAllAnalyzers() []*analysis.Analyzer {

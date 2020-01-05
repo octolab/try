@@ -2,7 +2,8 @@
 >
 > Tool to execute terminal commands with retries.
 
-[![Awesome][icon_awesome]][page_awesome]
+[![Build][build.icon]][build.page]
+[![Template][template.icon]][template.page]
 
 ## 💡 Idea
 
@@ -10,8 +11,7 @@
 $ retry -limit=3 -backoff=lin:500ms -- curl example.com
 ```
 
-Full description of the idea is available
-[here](https://www.notion.so/octolab/retry-cab5722faae445d197e44fbe0225cc98?r=0b753cbf767346f5a6fd51194829a2f3).
+Full description of the idea is available [here][design.page].
 
 ## 🏆 Motivation
 
@@ -146,23 +146,21 @@ $ brew install kamilsk/tap/retry
 ### Binary
 
 ```bash
-$ export REQ_VER=4.0.0  # all available versions are on https://github.com/kamilsk/retry.cli/releases
-$ export REQ_OS=Linux   # macOS and Windows are also available
-$ export REQ_ARCH=64bit # 32bit is also available
-$ curl -sL -o retry.tar.gz \
-       https://github.com/kamilsk/retry.cli/releases/download/"${REQ_VER}/retry_${REQ_VER}_${REQ_OS}-${REQ_ARCH}".tar.gz
-$ tar xf retry.tar.gz -C "${GOPATH}"/bin/ && rm retry.tar.gz
+$ curl -sSL https://bit.ly/install-retry | sh
+# or
+$ wget -qO- https://bit.ly/install-retry | sh
 ```
 
-### From source code
+### Source
 
 ```bash
-$ egg github.com/kamilsk/retry.cli -- make test install
-$ # or use mirror
-$ egg bitbucket.org/kamilsk/retry.cli -- make test install
+# use standard go tools
+$ go get -u github.com/kamilsk/retry.cli
+# or use egg tool
+$ egg tools add github.com/kamilsk/retry.cli
 ```
 
-> [egg][page_egg]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
+> [egg][egg.page]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
 
 ### Bash and Zsh completions
 
@@ -171,16 +169,20 @@ $ retry completion bash > /path/to/bash_completion.d/retry.sh
 $ retry completion zsh  > /path/to/zsh-completions/_retry.zsh
 ```
 
-<sup id="egg">1</sup> The project is still in prototyping. [↩](#anchor-egg)
+<sup id="egg">1</sup> The project is still in prototyping.[↩](#anchor-egg)
 
 ---
 
 made with ❤️ for everyone
 
-[icon_awesome]:    https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg
-[icon_build]:      https://travis-ci.org/kamilsk/retry.cli.svg?branch=master
+[build.icon]:       https://travis-ci.org/kamilsk/retry.cli.svg?branch=master
+[build.page]:       https://travis-ci.org/kamilsk/retry.cli
 
-[page_awesome]:    https://github.com/avelino/awesome-go#utilities
-[page_build]:      https://travis-ci.org/kamilsk/retry.cli
-[page_promo]:      https://github.com/kamilsk/retry.cli
-[page_egg]:        https://github.com/kamilsk/egg
+[design.page]:      https://www.notion.so/octolab/retry-cab5722faae445d197e44fbe0225cc98?r=0b753cbf767346f5a6fd51194829a2f3
+
+[promo.page]:       https://github.com/kamilsk/retry.cli
+
+[template.page]:    https://github.com/octomation/go-tool
+[template.icon]:    https://img.shields.io/badge/template-go--tool-blue
+
+[egg.page]:         https://github.com/kamilsk/egg

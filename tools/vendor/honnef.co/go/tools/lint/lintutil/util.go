@@ -25,14 +25,15 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/buildutil"
-	"golang.org/x/tools/go/packages"
 	"honnef.co/go/tools/config"
 	"honnef.co/go/tools/internal/cache"
 	"honnef.co/go/tools/lint"
 	"honnef.co/go/tools/lint/lintutil/format"
 	"honnef.co/go/tools/version"
+
+	"golang.org/x/tools/go/analysis"
+	"golang.org/x/tools/go/buildutil"
+	"golang.org/x/tools/go/packages"
 )
 
 func NewVersionFlag() flag.Getter {

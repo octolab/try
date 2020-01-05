@@ -4,10 +4,11 @@ import (
 	"sync"
 
 	gofmtAPI "github.com/golangci/gofmt/gofmt"
-	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
-	"github.com/golangci/golangci-lint/pkg/lint/linter"
 	"github.com/pkg/errors"
 	"golang.org/x/tools/go/analysis"
+
+	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
+	"github.com/golangci/golangci-lint/pkg/lint/linter"
 )
 
 const gofmtName = "gofmt"

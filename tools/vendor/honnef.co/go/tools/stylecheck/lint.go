@@ -11,14 +11,15 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/passes/inspect"
-	"golang.org/x/tools/go/ast/inspector"
-	"golang.org/x/tools/go/types/typeutil"
 	"honnef.co/go/tools/config"
 	"honnef.co/go/tools/internal/passes/buildssa"
 	. "honnef.co/go/tools/lint/lintdsl"
 	"honnef.co/go/tools/ssa"
+
+	"golang.org/x/tools/go/analysis"
+	"golang.org/x/tools/go/analysis/passes/inspect"
+	"golang.org/x/tools/go/ast/inspector"
+	"golang.org/x/tools/go/types/typeutil"
 )
 
 func CheckPackageComment(pass *analysis.Pass) (interface{}, error) {

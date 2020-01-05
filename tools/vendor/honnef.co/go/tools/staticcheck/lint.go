@@ -18,11 +18,6 @@ import (
 	texttemplate "text/template"
 	"unicode"
 
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/passes/inspect"
-	"golang.org/x/tools/go/ast/astutil"
-	"golang.org/x/tools/go/ast/inspector"
-	"golang.org/x/tools/go/types/typeutil"
 	. "honnef.co/go/tools/arg"
 	"honnef.co/go/tools/deprecated"
 	"honnef.co/go/tools/facts"
@@ -35,6 +30,12 @@ import (
 	"honnef.co/go/tools/ssa"
 	"honnef.co/go/tools/ssautil"
 	"honnef.co/go/tools/staticcheck/vrp"
+
+	"golang.org/x/tools/go/analysis"
+	"golang.org/x/tools/go/analysis/passes/inspect"
+	"golang.org/x/tools/go/ast/astutil"
+	"golang.org/x/tools/go/ast/inspector"
+	"golang.org/x/tools/go/types/typeutil"
 )
 
 func validRegexp(call *Call) {

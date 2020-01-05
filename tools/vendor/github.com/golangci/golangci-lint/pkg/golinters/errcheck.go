@@ -11,13 +11,14 @@ import (
 	"sync"
 
 	errcheck "github.com/golangci/errcheck/golangci"
+	"github.com/pkg/errors"
+	"golang.org/x/tools/go/analysis"
+
 	"github.com/golangci/golangci-lint/pkg/config"
 	"github.com/golangci/golangci-lint/pkg/fsutils"
 	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
 	"github.com/golangci/golangci-lint/pkg/lint/linter"
 	"github.com/golangci/golangci-lint/pkg/result"
-	"github.com/pkg/errors"
-	"golang.org/x/tools/go/analysis"
 )
 
 func NewErrcheck() *goanalysis.Linter {

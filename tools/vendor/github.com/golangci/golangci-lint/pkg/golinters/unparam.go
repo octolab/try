@@ -3,13 +3,15 @@ package golinters
 import (
 	"sync"
 
+	"golang.org/x/tools/go/packages"
+
+	"golang.org/x/tools/go/analysis"
+	"golang.org/x/tools/go/analysis/passes/buildssa"
+	"mvdan.cc/unparam/check"
+
 	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
 	"github.com/golangci/golangci-lint/pkg/lint/linter"
 	"github.com/golangci/golangci-lint/pkg/result"
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/passes/buildssa"
-	"golang.org/x/tools/go/packages"
-	"mvdan.cc/unparam/check"
 )
 
 func NewUnparam() *goanalysis.Linter {

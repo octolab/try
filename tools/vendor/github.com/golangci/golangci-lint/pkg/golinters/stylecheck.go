@@ -1,8 +1,9 @@
 package golinters
 
 import (
-	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
 	"honnef.co/go/tools/stylecheck"
+
+	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
 )
 
 func NewStylecheck() *goanalysis.Linter {

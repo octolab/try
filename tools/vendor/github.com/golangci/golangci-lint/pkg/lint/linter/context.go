@@ -1,12 +1,13 @@
 package linter
 
 import (
+	"golang.org/x/tools/go/packages"
+
 	"github.com/golangci/golangci-lint/internal/pkgcache"
 	"github.com/golangci/golangci-lint/pkg/config"
 	"github.com/golangci/golangci-lint/pkg/fsutils"
 	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis/load"
 	"github.com/golangci/golangci-lint/pkg/logutils"
-	"golang.org/x/tools/go/packages"
 )
 
 type Context struct {

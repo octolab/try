@@ -8,10 +8,11 @@ import (
 	"runtime/trace"
 	"strconv"
 
-	"github.com/golangci/golangci-lint/pkg/config"
-	"github.com/golangci/golangci-lint/pkg/logutils"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
+
+	"github.com/golangci/golangci-lint/pkg/config"
+	"github.com/golangci/golangci-lint/pkg/logutils"
 )
 
 func (e *Executor) persistentPreRun(_ *cobra.Command, _ []string) {

@@ -2,13 +2,13 @@
 github.com/briandowns/spinner
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
-# github.com/fatih/color v1.7.0
+# github.com/fatih/color v1.8.0
 github.com/fatih/color
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
 # github.com/kamilsk/breaker v1.1.1
 github.com/kamilsk/breaker
-# github.com/kamilsk/platform v0.20.3
+# github.com/kamilsk/platform v0.21.0
 github.com/kamilsk/platform/cmd/cobra
 github.com/kamilsk/platform/pkg/safe
 github.com/kamilsk/platform/pkg/unsafe
@@ -17,9 +17,9 @@ github.com/kamilsk/retry/v4
 github.com/kamilsk/retry/v4/backoff
 github.com/kamilsk/retry/v4/jitter
 github.com/kamilsk/retry/v4/strategy
-# github.com/mattn/go-colorable v0.1.4
+# github.com/mattn/go-colorable v0.1.2
 github.com/mattn/go-colorable
-# github.com/mattn/go-isatty v0.0.11
+# github.com/mattn/go-isatty v0.0.8
 github.com/mattn/go-isatty
 # github.com/pkg/errors v0.8.1
 github.com/pkg/errors
@@ -31,7 +31,11 @@ github.com/spf13/cobra
 github.com/spf13/pflag
 # github.com/stretchr/testify v1.4.0
 github.com/stretchr/testify/assert
-# golang.org/x/sys v0.0.0-20191224085550-c709ea063b76
+# go.octolab.org v0.0.5
+go.octolab.org/os/shell
+# go.octolab.org/toolkit/cli v0.0.6
+go.octolab.org/toolkit/cli/cobra
+# golang.org/x/sys v0.0.0-20190222072716-a9d3bda3a223
 golang.org/x/sys/unix
 # gopkg.in/yaml.v2 v2.2.5
 gopkg.in/yaml.v2

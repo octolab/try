@@ -7,10 +7,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/golangci/golangci-lint/pkg/fsutils"
-	"github.com/golangci/golangci-lint/pkg/logutils"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
+
+	"github.com/golangci/golangci-lint/pkg/fsutils"
+	"github.com/golangci/golangci-lint/pkg/logutils"
 )
 
 type FileReader struct {

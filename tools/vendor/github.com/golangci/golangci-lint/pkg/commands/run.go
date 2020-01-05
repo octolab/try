@@ -11,6 +11,10 @@ import (
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
+
 	"github.com/golangci/golangci-lint/pkg/config"
 	"github.com/golangci/golangci-lint/pkg/exitcodes"
 	"github.com/golangci/golangci-lint/pkg/lint"
@@ -20,9 +24,6 @@ import (
 	"github.com/golangci/golangci-lint/pkg/printers"
 	"github.com/golangci/golangci-lint/pkg/result"
 	"github.com/golangci/golangci-lint/pkg/result/processors"
-	"github.com/pkg/errors"
-	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
 )
 
 func getDefaultIssueExcludeHelp() string {
@@ -286,9 +287,14 @@ func (e *Executor) runAnalysis(ctx context.Context, args []string) ([]result.Iss
 		return nil, err
 	}
 
+	enabledOriginalLinters, err := e.EnabledLintersSet.Get(false)
+	if err != nil {
+		return nil, err
+	}
+
 	for _, lc := range e.DBManager.GetAllSupportedLinterConfigs() {
 		isEnabled := false
-		for _, enabledLC := range enabledLinters {
+		for _, enabledLC := range enabledOriginalLinters {
 			if enabledLC.Name() == lc.Name() {
 				isEnabled = true
 				break
@@ -309,7 +315,11 @@ func (e *Executor) runAnalysis(ctx context.Context, args []string) ([]result.Iss
 		return nil, err
 	}
 
-	issues := runner.Run(ctx, enabledLinters, lintCtx)
+	issues, err := runner.Run(ctx, enabledLinters, lintCtx)
+	if err != nil {
+		return nil, err
+	}
+
 	fixer := processors.NewFixer(e.cfg, e.log, e.fileCache)
 	return fixer.Process(issues), nil
 }

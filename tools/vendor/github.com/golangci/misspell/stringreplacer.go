@@ -5,7 +5,8 @@
 package misspell
 
 import (
-	"io" //	"log"
+	"io"
+	//	"log"
 	"strings"
 )
 

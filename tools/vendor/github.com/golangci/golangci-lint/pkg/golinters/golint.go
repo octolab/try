@@ -7,11 +7,12 @@ import (
 	"go/types"
 	"sync"
 
+	lintAPI "github.com/golangci/lint-1"
+	"golang.org/x/tools/go/analysis"
+
 	"github.com/golangci/golangci-lint/pkg/golinters/goanalysis"
 	"github.com/golangci/golangci-lint/pkg/lint/linter"
 	"github.com/golangci/golangci-lint/pkg/result"
-	lintAPI "github.com/golangci/lint-1"
-	"golang.org/x/tools/go/analysis"
 )
 
 func golintProcessPkg(minConfidence float64, files []*ast.File, fset *token.FileSet,

@@ -17,6 +17,8 @@ import (
 	"github.com/kamilsk/platform/pkg/unsafe"
 	"github.com/kamilsk/retry/v4"
 	"github.com/pkg/errors"
+	_ "github.com/stretchr/testify/assert"
+	_ "go.octolab.org/toolkit/cli/cobra"
 )
 
 const (

@@ -23,9 +23,10 @@ package objectpath
 
 import (
 	"fmt"
-	"go/types"
 	"strconv"
 	"strings"
+
+	"go/types"
 )
 
 // A Path is an opaque name that identifies a types.Object

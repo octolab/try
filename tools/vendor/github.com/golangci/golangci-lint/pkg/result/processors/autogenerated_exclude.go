@@ -7,9 +7,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/pkg/errors"
+
 	"github.com/golangci/golangci-lint/pkg/logutils"
 	"github.com/golangci/golangci-lint/pkg/result"
-	"github.com/pkg/errors"
 )
 
 var autogenDebugf = logutils.Debug("autogen_exclude")
@@ -125,7 +126,7 @@ func getDoc(filePath string) (string, error) {
 		if strings.HasPrefix(line, "//") { //nolint:gocritic
 			text := strings.TrimSpace(strings.TrimPrefix(line, "//"))
 			docLines = append(docLines, text)
-		} else if line == "" {
+		} else if line == "" || strings.HasPrefix(line, "package") {
 			// go to next line
 		} else {
 			break

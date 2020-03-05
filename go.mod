@@ -1,4 +1,4 @@
-module github.com/kamilsk/cli/retry
+module go.octolab.org/try
 
 go 1.11
 

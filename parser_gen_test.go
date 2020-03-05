@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bytes"
 	"flag"
-	"io/ioutil"
 	"testing"
 )
 
@@ -300,35 +298,5 @@ func Test_parseTransform_generated(t *testing.T) {
 		case tr == nil:
 			t.Error("expected correct transformation, obtained nil")
 		}
-	}
-}
-
-func Test_usage(t *testing.T) {
-	buf := bytes.NewBuffer(nil)
-	golden := "fixtures/usage.golden"
-
-	{
-		usage(buf, Metadata{
-			BinName: "test",
-			Commit:  commit, BuildDate: date, Version: version,
-			Compiler: "test", Platform: "test", GoVersion: "test",
-		})()
-	}
-
-	actual := buf.Bytes()
-
-	if *update {
-		if err := ioutil.WriteFile(golden, actual, 0644); err != nil {
-			t.Error(err)
-		}
-	}
-
-	expected, err := ioutil.ReadFile(golden)
-	if err != nil {
-		t.Error(err)
-	}
-
-	if !bytes.Equal(actual, expected) {
-		t.Error("unexpected usage message")
 	}
 }

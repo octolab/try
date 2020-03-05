@@ -1,5 +1,8 @@
+---
+project_name: try
+
 archives:
-- id: binary
+- id: try
   files:
   - LICENSE
   format: tar.gz
@@ -11,19 +14,28 @@ archives:
     linux:  Linux
 
 brews:
-- name: retry
-  description: Tool to execute terminal commands with retries.
-  homepage: https://github.com/kamilsk/retry.cli
+- name: try
   commit_author:
     name:  Kamil Samigullin
     email: kamil@samigullin.info
+  description: Tool to execute terminal commands with retries.
   folder: Formula
+  homepage: https://github.com/kamilsk/try
   github:
-    name:  homebrew-tap
     owner: kamilsk
+    name:  homebrew-tap
+  install: |
+    bin.install "try"
+    output = Utils.popen_read("#{bin}/try completion bash")
+    (bash_completion/"try").write output
+    output = Utils.popen_read("#{bin}/try completion zsh")
+    (zsh_completion/"_try").write output
+    prefix.install_metafiles
+  test: |
+    system "#{bin}/try --version"
 
 builds:
-- binary: retry
+- binary: try
   env:
   - CGO_ENABLED=0
   goarch:
@@ -38,7 +50,6 @@ builds:
 checksum: { name_template: checksums.txt }
 
 release:
-  draft: false
   github:
-    name:  retry.cli
     owner: kamilsk
+    name:  try

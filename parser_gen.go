@@ -1,6 +1,3 @@
-
-
-
 package main
 
 import (
@@ -13,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kamilsk/platform/pkg/unsafe"
 	"github.com/kamilsk/retry/v4/backoff"
 	"github.com/kamilsk/retry/v4/jitter"
 	"github.com/kamilsk/retry/v4/strategy"
+	"go.octolab.org/unsafe"
 )
 
 func init() {

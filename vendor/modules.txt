@@ -1,4 +1,4 @@
-# github.com/briandowns/spinner v1.9.0
+# github.com/briandowns/spinner v1.10.0
 github.com/briandowns/spinner
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
@@ -8,10 +8,6 @@ github.com/fatih/color
 github.com/inconshreveable/mousetrap
 # github.com/kamilsk/breaker v1.1.1
 github.com/kamilsk/breaker
-# github.com/kamilsk/platform v0.22.4
-github.com/kamilsk/platform/cmd/cobra
-github.com/kamilsk/platform/pkg/safe
-github.com/kamilsk/platform/pkg/unsafe
 # github.com/kamilsk/retry/v4 v4.7.2
 github.com/kamilsk/retry/v4
 github.com/kamilsk/retry/v4/backoff
@@ -25,17 +21,19 @@ github.com/mattn/go-isatty
 github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
-# github.com/spf13/cobra v0.0.6
+# github.com/spf13/cobra v0.0.7
 github.com/spf13/cobra
-# github.com/spf13/pflag v1.0.5
+# github.com/spf13/pflag v1.0.3
 github.com/spf13/pflag
 # github.com/stretchr/testify v1.5.1
 github.com/stretchr/testify/assert
-# go.octolab.org v0.0.5
-go.octolab.org/os/shell
-# go.octolab.org/toolkit/cli v0.0.6
+# go.octolab.org v0.0.18
+go.octolab.org/safe
+go.octolab.org/unsafe
+# go.octolab.org/toolkit/cli v0.0.7
 go.octolab.org/toolkit/cli/cobra
+go.octolab.org/toolkit/cli/internal/os/shell
 # golang.org/x/sys v0.0.0-20191026070338-33540a1f6037
 golang.org/x/sys/unix
-# gopkg.in/yaml.v2 v2.2.5
+# gopkg.in/yaml.v2 v2.2.2
 gopkg.in/yaml.v2

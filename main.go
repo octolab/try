@@ -14,11 +14,11 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/fatih/color"
 	"github.com/kamilsk/breaker"
-	"github.com/kamilsk/platform/pkg/unsafe"
 	"github.com/kamilsk/retry/v4"
 	"github.com/pkg/errors"
 	_ "github.com/stretchr/testify/assert"
 	_ "go.octolab.org/toolkit/cli/cobra"
+	"go.octolab.org/unsafe"
 )
 
 const (

@@ -20,7 +20,7 @@ brews:
     email: kamil@samigullin.info
   description: Tool to execute terminal commands with retries.
   folder: Formula
-  homepage: https://github.com/kamilsk/try
+  homepage: https://github.com/octolab/try
   github:
     owner: kamilsk
     name:  homebrew-tap
@@ -51,5 +51,5 @@ checksum: { name_template: checksums.txt }
 
 release:
   github:
-    owner: kamilsk
+    owner: octolab
     name:  try

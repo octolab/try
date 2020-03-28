@@ -5,8 +5,8 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/kamilsk/platform/pkg/safe"
-	"github.com/kamilsk/platform/pkg/unsafe"
+	"go.octolab.org/safe"
+	"go.octolab.org/unsafe"
 )
 
 //go:generate go run gen.go -output ../parser_gen.go
@@ -26,10 +26,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kamilsk/platform/pkg/unsafe"
 	"github.com/kamilsk/retry/v4/backoff"
 	"github.com/kamilsk/retry/v4/jitter"
 	"github.com/kamilsk/retry/v4/strategy"
+	"go.octolab.org/unsafe"
 )
 
 func init() {
@@ -309,6 +309,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer safe.Close(f)
+	defer safe.Close(f, unsafe.Ignore)
 	unsafe.Ignore(t.Execute(f, nil))
 }
